@@ -1,0 +1,38 @@
+!! Only works for Chrome !!
+
+// Installation :
+
+Create a new Bookmark.
+In the "Name" field, you can put "AirdroidNotifier".
+In the "URL" field, Copy and Paste following lines :
+
+  javascript:(function(){
+    var jsFile=document.createElement('script');
+    jsFile.setAttribute("type","text/javascript");
+    jsFile.setAttribute("src", "https://raw.github.com/FlorianBezagu/AirDroid-Webkit-Notifier/master/airdroid-webkit-notifier.js");
+    document.getElementsByTagName("head")[0].appendChild(jsFile);  
+  })();
+
+That's it !
+
+
+// Usage :
+
+- Open your Airdroid as usual.
+- Click the bookmark you created before :
+  - The first time, you will see a button "Enable desktop notifications for AirDroid"
+  - Click this button and click "Allow".
+- Ask a friend to send you a message and see the result !
+
+NOTE :
+
+You have to click the bookmark each time you login to your Airdroid.
+But Desktop notifications question is asked only the first time.
+
+Enjoy ! ;-)
+
+
+
+// Troubles ?
+
+Tell me what is your problem : florian.bezagu@gmail.com
