@@ -8,17 +8,17 @@ http://www.youtube.com/watch?v=zpP0Ob8vpgA
 Installation
 ------------
 
-Create a new Bookmark.
-In the "Name" field, you can put "AirdroidNotifier".
-In the "URL" field, Copy and Paste following lines :
-
-  javascript:(function(){
-    var jsFile=document.createElement('script');
-    jsFile.setAttribute("type","text/javascript");
-    jsFile.setAttribute("src", "https://raw.github.com/FlorianBezagu/AirDroid-Webkit-Notifier/master/airdroid-webkit-notifier.js");
-    document.getElementsByTagName("head")[0].appendChild(jsFile);  
-  })();
-
+- Create a new Bookmark.
+- In the "Name" field, you can put "AirdroidNotifier".
+- In the "URL" field, Copy and Paste following lines :
+<pre>
+    javascript:(function(){
+        var jsFile=document.createElement('script');
+        jsFile.setAttribute("type","text/javascript");
+        jsFile.setAttribute("src", "https://raw.github.com/FlorianBezagu/AirDroid-Webkit-Notifier/master/airdroid-webkit-notifier.js");
+        document.getElementsByTagName("head")[0].appendChild(jsFile);  
+    })();
+</pre>
 That's it !
 
 
