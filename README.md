@@ -1,5 +1,5 @@
-Only works for Chrome
-=====================
+Only works for WebKit based browser (Chrome, Safari, ...)
+=========================================================
 
 Video demo
 ----------
