@@ -1,9 +1,12 @@
-!! Only works for Chrome !!
+Only works for Chrome
+=====================
 
-Video demo :
+Video demo
+----------
 http://www.youtube.com/watch?v=zpP0Ob8vpgA
 
-// Installation :
+Installation
+------------
 
 Create a new Bookmark.
 In the "Name" field, you can put "AirdroidNotifier".
@@ -19,7 +22,8 @@ In the "URL" field, Copy and Paste following lines :
 That's it !
 
 
-// Usage :
+Usage
+-----
 
 - Open your Airdroid as usual.
 - LOGIN BEFORE NEXT STEPS
@@ -28,15 +32,17 @@ That's it !
   - Click this button and click "Allow".
 - Ask a friend to send you a message and see the result !
 
-NOTE :
+NOTE
+----
 
-You have to click the bookmark each time you login to your Airdroid.
-But Desktop notifications question is asked only the first time.
+- You have to click the bookmark each time you login to your Airdroid.
+- Desktop notifications question is asked only the first time.
+- It doesn't work yet for http://web.airdroid.com access. Use your IP address instead.
 
 Enjoy ! ;-)
 
 
+Troubles ?
+----------
 
-// Troubles ?
-
-Tell me what is your problem : florian.bezagu@gmail.com
+Tell me what is your problem : florian@bezagu.com
