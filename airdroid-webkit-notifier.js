@@ -5,7 +5,75 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
 var jQ = jQuery.noConflict(true);
 
 jQ(function(){
-  if(window.webkitNotifications.checkPermission() === 1){
+  var iframe = jQ('#airdroid');
+  var _isLaunched = true;
+  if(iframe.length > 0 && iframe.get(0).tagName === 'IFRAME'){
+    _isLaunched = false;
+    var _localUrl = iframe.attr('src').split('/').slice(0, 3).join('/');
+    var alertButtonContainer = jQ('<div/>')
+        .attr('id', 'alertButtonContainer')
+        .css({
+          'z-index' : '1001',
+          'position' : 'fixed',
+          'left' : '50%',
+          'top' : '50%',
+          'margin-left' : '-300px',
+          'margin-top' : '-80px',
+          'text-align' : 'center',
+          'line-height' : '40px',
+        });
+    var alertButtonBody = jQ('<div/>')
+        .html(
+          'Airdroid Webkit Notifier is not available for <b>http://web.airdroid.com</b>.<br>' +
+          'If you want to use it, you have to access <b>' + _localUrl + '</b>.'
+        )
+        .attr('id', 'alertButtonBody')
+        .css({
+          'display' : 'block',
+          'width' : '600px',
+          'height' : '160px',
+          'line-height' : '35px',
+          'border' : '1px solid #999',
+          'border-radius' : '8px',
+          'color' : '#333',
+          'background-color' : '#EEE',
+        })
+        .appendTo(alertButtonContainer);
+    var alertButtonOK = jQ('<a/>')
+        .text(
+          'OK, let\'s go !'
+        )
+        .attr('href', _localUrl)
+        .attr('id', 'alertButtonOK')
+        .css({
+          'display' : 'block',
+          'width' : '80%',
+          'margin' : 'auto',
+          'border' : '1px solid #444',
+          'border-radius' : '8px',
+          'background-color' : '#266CD9',
+          'color' : '#EEE',
+          'font-size' : '18px',
+          'text-decoration' : 'none',
+          'font-weight' : 'bold'
+        })
+        .appendTo(alertButtonBody);
+    var alertButtonCancel = jQ('<a/>')
+        .text(
+          'No thanks, disable AirDroid Webkit Notifier.'
+        )
+        .attr('href', '#')
+        .attr('id', 'alertButtonCancel')
+        .css({
+          'display' : 'block',
+          'border-radius' : '8px',
+          'text-decoration' : 'underline',
+        })
+        .appendTo(alertButtonBody);
+
+    alertButtonContainer.appendTo('body');
+  }
+  else if(window.webkitNotifications.checkPermission() === 1){
     var requestPermissionButtonContainer = jQ('<div/>')
         .css({
           'z-index' : '1001',
@@ -49,41 +117,48 @@ jQ(function(){
     requestPermissionHiderBody.appendTo('body');
     requestPermissionButtonContainer.appendTo('body');
   }
-  jQ(document).on('click', '#requestPermissionButton', function(e){
+  jQ(document).on('click', '#alertButtonCancel', function(e){
     e.preventDefault();
-    window.webkitNotifications.requestPermission();
-    jQ('#requestPermissionHiderBody').fadeOut(500);
-    jQ('#requestPermissionButton').fadeOut(500);
-    setTimeout(function(){
-      jQ('#requestPermissionHiderBody').remove();
-      jQ('#requestPermissionButton').remove();
-    }, 500);
+    $('#alertButtonContainer').remove();
     return false;
   });
-  var notifyMe = true;
-  var exitNoticeWidgetClicked = false;
-  var messageManage = Airdroid.messageManage;
-  messageManage.createNoticeAirdroid = messageManage.createNotice;
-  messageManage.createNotice = function(ana, anb, anc, and, ane){
-    if(notifyMe){
-      notifyMe = false;
-      var coreNotice = jQ('td.noticeWidget-body-c ul');
+  if(_isLaunched){
+    jQ(document).on('click', '#requestPermissionButton', function(e){
+      e.preventDefault();
+      window.webkitNotifications.requestPermission();
+      jQ('#requestPermissionHiderBody').fadeOut(500);
+      jQ('#requestPermissionButton').fadeOut(500);
       setTimeout(function(){
-        var noticeImage = 'https://raw.github.com/FlorianBezagu/AirDroid-Webkit-Notifier/master/airdroid.png';
-        window.webkitNotifications.createNotification(noticeImage, "AirDroid", anb).show();
-      }, 100);
+        jQ('#requestPermissionHiderBody').remove();
+        jQ('#requestPermissionButton').remove();
+      }, 500);
+      return false;
+    });
+    var notifyMe = true;
+    var exitNoticeWidgetClicked = false;
+    var messageManage = Airdroid.messageManage;
+    messageManage.createNoticeAirdroid = messageManage.createNotice;
+    messageManage.createNotice = function(ana, anb, anc, and, ane){
+      if(notifyMe){
+        notifyMe = false;
+        var coreNotice = jQ('td.noticeWidget-body-c ul');
+        setTimeout(function(){
+          var noticeImage = 'https://raw.github.com/FlorianBezagu/AirDroid-Webkit-Notifier/master/airdroid.png';
+          window.webkitNotifications.createNotification(noticeImage, "AirDroid", anb).show();
+        }, 100);
+        setTimeout(function(){
+          notifyMe = true;
+        }, 1000);
+      }
+      Airdroid.messageManage.createNoticeAirdroid(ana, anb, anc, and, ane);
+    }
+    jQ(document).on('click', 'div.noticeWidget',function(){
+      notifyMe = false;
       setTimeout(function(){
         notifyMe = true;
       }, 1000);
-    }
-    Airdroid.messageManage.createNoticeAirdroid(ana, anb, anc, and, ane);
+    });
   }
-  jQ(document).on('click', 'div.noticeWidget',function(){
-    notifyMe = false;
-    setTimeout(function(){
-      notifyMe = true;
-    }, 1000);
-  });
 });
 
 /*********************************************************************
