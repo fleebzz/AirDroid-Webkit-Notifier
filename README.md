@@ -37,7 +37,7 @@ NOTE
 
 - You have to click the bookmark each time you login to your Airdroid.
 - Desktop notifications question is asked only the first time.
-- It doesn't work yet for http://web.airdroid.com access. Use your IP address instead.
+- It doesn't work yet for http://web.airdroid.com access. Use your IP address instead. This case is checked now and you can enable this notifier, you'll have a choice to do.
 
 Enjoy ! ;-)
 
