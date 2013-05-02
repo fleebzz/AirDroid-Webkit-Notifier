@@ -11,14 +11,16 @@ Installation
 - Create a new Bookmark.
 - In the "Name" field, you can put "AirdroidNotifier".
 - In the "URL" field, Copy and Paste following lines :
-<pre>
-    javascript:(function(){
-        var jsFile=document.createElement('script');
-        jsFile.setAttribute("type","text/javascript");
-        jsFile.setAttribute("src", "https://raw.github.com/FlorianBezagu/AirDroid-Webkit-Notifier/master/airdroid-webkit-notifier.js");
-        document.getElementsByTagName("head")[0].appendChild(jsFile);  
-    })();
-</pre>
+
+```html
+javascript:(function(){
+    var jsFile=document.createElement('script');
+    jsFile.setAttribute("type","text/javascript");
+    jsFile.setAttribute("src", "https://raw.github.com/FlorianBezagu/AirDroid-Webkit-Notifier/master/airdroid-webkit-notifier.js");
+    document.getElementsByTagName("head")[0].appendChild(jsFile);  
+})();
+```
+
 That's it !
 
 
@@ -35,6 +37,7 @@ Usage
 NOTE
 ----
 
+- This version works for both V1 and V2 Aidroid versions
 - You have to click the bookmark each time you login to your Airdroid.
 - Desktop notifications question is asked only the first time.
 - It doesn't work yet for http://web.airdroid.com access. Use your IP address instead. This case is checked now and you can enable this notifier, you'll have a choice to do.
@@ -45,4 +48,6 @@ Enjoy ! ;-)
 Troubles ?
 ----------
 
-Tell me what is your problem : florian@bezagu.com
+Open a issue here : [Issues](https://github.com/FlorianBezagu/AirDroid-Webkit-Notifier/issues)
+
+Or send me an email : florian@bezagu.com
