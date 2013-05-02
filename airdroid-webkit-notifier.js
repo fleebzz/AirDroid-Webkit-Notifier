@@ -136,7 +136,11 @@ jQ(function(){
     });
     var notifyMe = true;
     var exitNoticeWidgetClicked = false;
-    var messageManage = Airdroid.messageManage;
+    var airdroidVersion = 1;
+    if(Airdroid.messageManage === undefined){
+      airdroidVersion = 2;
+    }
+    var messageManage = airdroidVersion === 1 ? Airdroid.messageManage : Airdroid.Message;
     messageManage.createNoticeAirdroid = messageManage.createNotice;
     messageManage.createNotice = function(ana, anb, anc, and, ane){
       if(notifyMe){
@@ -144,13 +148,14 @@ jQ(function(){
         var coreNotice = jQ('td.noticeWidget-body-c ul');
         setTimeout(function(){
           var noticeImage = 'https://raw.github.com/FlorianBezagu/AirDroid-Webkit-Notifier/master/airdroid.png';
-          window.webkitNotifications.createNotification(noticeImage, "AirDroid", anb).show();
+          var _content = airdroidVersion === 1 ? anb : ana.content;
+          window.webkitNotifications.createNotification(noticeImage, "AirDroid", _content).show();
         }, 100);
         setTimeout(function(){
           notifyMe = true;
         }, 1000);
       }
-      Airdroid.messageManage.createNoticeAirdroid(ana, anb, anc, and, ane);
+      messageManage.createNoticeAirdroid(ana, anb, anc, and, ane);
     }
     jQ(document).on('click', 'div.noticeWidget',function(){
       notifyMe = false;
